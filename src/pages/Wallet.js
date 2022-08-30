@@ -12,6 +12,9 @@ class Wallet extends React.Component {
     );
   }
 }
+const mapStateToProps = (state) => ({
+  expenses: state.wallet.expenses,
+});
 
 Wallet.propTypes = { expenses: PropTypes.arrayOf(PropTypes.string) }.isRequired;
 
