@@ -18,4 +18,4 @@ const mapStateToProps = (state) => ({
 
 Wallet.propTypes = { expenses: PropTypes.arrayOf(PropTypes.string) }.isRequired;
 
-export default connect(mapStateToProps, mapDispatchToProps)(Wallet);
+export default connect(mapStateToProps)(Wallet);
