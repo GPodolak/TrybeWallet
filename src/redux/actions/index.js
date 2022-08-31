@@ -16,3 +16,11 @@ export const requestCurrencies = (currencies) => ({
   type: REQUEST_CURRENCIES,
   currencies,
 });
+
+export function fetchCurrencies() {
+  return async (dispatch) => {
+    const callCurrencies = await fetchAPI();
+    delete callCurrencies.USDT;
+    dispatch(requestCurrencies(callCurrencies));
+  };
+}

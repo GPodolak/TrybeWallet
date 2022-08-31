@@ -10,6 +10,18 @@ const walletReducer = (state = INITIAL_STATE, action) => {
   console.log(action);
   switch (action.type) {
   case REQUEST_CURRENCIES:
+    handleClick = async () => {
+      const { display } = this.state;
+      const { getExchangeRates } = this.props;
+      await getExchangeRates(display);
+      this.handleState();
+    };
+
+    handleState = () => {
+      this.setState(() => ({
+        display: InitialStateEdit,
+      }));
+    };
     return {
       ...state,
       currencies: Object.keys(action.currencies),
