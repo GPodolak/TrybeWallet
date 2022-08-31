@@ -10,18 +10,6 @@ const walletReducer = (state = INITIAL_STATE, action) => {
   console.log(action);
   switch (action.type) {
   case REQUEST_CURRENCIES:
-    handleClick = async () => {
-      const { display } = this.state;
-      const { getExchangeRates } = this.props;
-      await getExchangeRates(display);
-      this.handleState();
-    };
-
-    handleState = () => {
-      this.setState(() => ({
-        display: InitialStateEdit,
-      }));
-    };
     return {
       ...state,
       currencies: Object.keys(action.currencies),
@@ -41,11 +29,10 @@ const walletReducer = (state = INITIAL_STATE, action) => {
   case DELETE_EXPENSE:
     return {
       ...state,
-      expenses: state.expenses.filter((expense) => expense.id !== action.expense),
+      expenses: state.expenses.filter((expense) => expense !== action.expense),
     };
   default:
     return state;
   }
 };
-
 export default walletReducer;

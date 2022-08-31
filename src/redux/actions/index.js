@@ -2,6 +2,8 @@
 /* import fetchAPI from '../../Services/Services';
  */
 
+import fetchAPI from '../Services/Services';
+
 export const LOGIN_USER = 'LOGIN_USER';
 export const CHANGE_WALLET = 'CHANGE_WALLET';
 export const REQUEST_CURRENCIES = 'REQUEST_CURRENCIES';
@@ -24,3 +26,20 @@ export function fetchCurrencies() {
     dispatch(requestCurrencies(callCurrencies));
   };
 }
+
+export const getWallet = (stateAndExchangeRates) => ({
+  type: CHANGE_WALLET,
+  expense: stateAndExchangeRates.state,
+  exchangeRates: stateAndExchangeRates.exchangeRates,
+});
+
+export function fetchExchangeRates(state) {
+  return async (dispatch) => {
+    const exchangeRates = await fetchAPI();
+    dispatch(getWallet({ state, exchangeRates }));
+  };
+}
+export const removeExpense = (expense) => ({
+  type: DELETE_EXPENSE,
+  expense,
+});
