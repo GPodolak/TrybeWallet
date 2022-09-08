@@ -1,19 +1,8 @@
-// Esse reducer será responsável por tratar as informações da pessoa usuária
-import { LOGIN_USER } from '../actions';
+// Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
 
-const INITIAL_STATE = {
-  email: '',
-};
+export const LOGIN_USER = 'LOGIN_USER';
 
-function user(state = INITIAL_STATE, actions) {
-  switch (actions.type) {
-  case LOGIN_USER:
-    return {
-      ...state,
-      email: actions.email,
-    };
-  default:
-    return state;
-  }
-}
-export default user;
+export const getLogin = (email) => ({
+  type: LOGIN_USER,
+  email,
+});
