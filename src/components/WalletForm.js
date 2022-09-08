@@ -1,25 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchCurrencies, fetchExchangeRates } from '../redux/actions/index';
+import { fetchCurrencies } from '../redux/actions/index';
 
 class WalletForm extends React.Component {
   componentDidMount() {
     this.loadCurrencies();
-  }
-
-  handleClick = async () => {
-    const { getExchangeRates } = this.props;
-    await getExchangeRates(this.state);
-    this.handleState();
-  };
-
-  handleState() {
-    this.setState(() => ({
-      value: '',
-      description: '',
-
-    }));
   }
 
   loadCurrencies = async () => {
@@ -29,7 +15,7 @@ class WalletForm extends React.Component {
   };
 
   render() {
-    const { currencies, display, edit, handleChange,
+    const { currencies, display, edit, handleChange, handleClick,
       handleSubmit } = this.props;
     const { value, description, tag, currency, method } = display;
     return (
@@ -127,7 +113,7 @@ class WalletForm extends React.Component {
 
         <button
           type="button"
-          onClick={ this.handleClick }
+          onClick={ handleClick }
         >
           {edit ? 'Editar Despesa' : 'Adicionar despesa'}
         </button>
@@ -149,7 +135,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getCurrencies: () => dispatch(fetchCurrencies()),
-  getExchangeRates: (state) => dispatch(fetchExchangeRates(state)),
+  // getExchangeRates: (state) => dispatch(fetchExchangeRates(state)),
 
 });
 

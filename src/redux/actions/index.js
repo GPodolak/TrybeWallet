@@ -1,7 +1,4 @@
 // Coloque aqui suas actions
-/* import fetchAPI from '../../Services/Services';
- */
-
 import fetchAPI from '../Services/Services';
 
 export const LOGIN_USER = 'LOGIN_USER';

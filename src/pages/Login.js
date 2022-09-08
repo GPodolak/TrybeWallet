@@ -14,29 +14,30 @@ class Login extends React.Component {
     };
   }
 
-  handlechange = ({ target: { name, value } }) => {
+  handleChange = ({ target: { name, value } }) => {
     this.setState({ [name]: value }, () => this.buttonValidation());
   };
 
   buttonValidation = () => {
     const minimumCharacters = 6;
     const { email, password } = this.state;
-    const passWordValidation = password.length >= minimumCharacters;
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const emailValidation = regex.test(email);
-    // https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail
-    this.setState({ buttonDisabled: !(emailValidation && passWordValidation) });
+    const passwordValidation = password.length >= minimumCharacters;
+    const emailValidation = email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+    // https://pt.stackoverflow.com/questions/1386/express%C3%A3o-regular-para-valida%C3%A7%C3%A3o-de-e-mail    const passwordVal = password.length >= minimumCharacters;
+    this.setState({ buttonDisabled: !(emailValidation && passwordValidation) });
   };
 
   handleClick = () => {
+    console.log('clicou');
     const { saveLogin, history } = this.props;
     const { email } = this.state;
-    saveLogin(email);
-    history.push('/carteira');
+    saveLogin(email); // botão habilitado para o clique, email valido enviado salvo no state
+    history.push('/carteira'); // no clique do botão a rota é redirecionada para carteira;
   };
 
   render() {
     const { email, password, buttonDisabled } = this.state;
+
     return (
       <div>
         <section>
@@ -48,18 +49,19 @@ class Login extends React.Component {
               id="email"
               data-testid="email-input"
               value={ email }
-              onChange={ this.handlechange }
+              onChange={ this.handleChange }
+            // onKeyUp={ this.handleChange }
             />
           </label>
           <label htmlFor="password">
-            Senha
+            Password
             <input
               name="password"
               type="password"
               id="password"
               data-testid="password-input"
               value={ password }
-              onChange={ this.handlechange }
+              onChange={ this.handleChange }
             />
           </label>
           <button
@@ -81,6 +83,7 @@ Login.propTypes = {
     push: PropTypes.func,
   }).isRequired,
 };
+
 const mapDispatchToProps = (dispatch) => ({
   saveLogin: (email) => dispatch(userLog(email)),
 });

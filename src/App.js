@@ -8,9 +8,10 @@ function App() {
     <Switch>
       <Route exact path="/" component={ Login } />
       <Route exact path="/carteira" component={ Wallet } />
+      {' '}
+
     </Switch>
   );
 }
 
 export default App;
-/* teste */
