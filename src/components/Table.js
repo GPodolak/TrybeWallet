@@ -7,7 +7,7 @@ class Table extends Component {
   handleClickDelete = (id) => {
     const { deleteExpenses } = this.props;
     deleteExpenses(id);
-  }
+  };
 
   render() {
     const { expenses, handleEdit } = this.props;
@@ -58,7 +58,8 @@ class Table extends Component {
                     Editar
                   </button>
                 </td>
-              </tr>);
+              </tr>
+            );
           })}
         </tbody>
       </table>
