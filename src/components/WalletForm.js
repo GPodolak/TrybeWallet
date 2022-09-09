@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchCurrencies } from '../redux/actions/index';
+/* import { fetchCurrencies } from '../redux/actions/index';
+ */
+// eslint-disable-next-line
+import { fetchCurrencies } from '../redux/actions';
 
 class WalletForm extends React.Component {
   componentDidMount() {
