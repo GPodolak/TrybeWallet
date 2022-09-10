@@ -11,7 +11,6 @@ class Table extends Component {
 
   render() {
     const { expenses, handleEdit } = this.props;
-    console.log(expenses);
     return (
       <table>
         <thead>

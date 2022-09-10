@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import WalletForm from '../components/WalletForm';
 import Table from '../components/Table';
-import { fetchCurrencies, fetchExchangeRates } from '../redux/actions/index';
+import { editExpense, fetchCurrencies, fetchExchangeRates } from '../redux/actions/index';
 
 const InitialStateEdit = {
   value: '',
@@ -36,6 +36,7 @@ class Wallet extends React.Component {
 
   handleClickEdit = (id) => {
     const { expenses } = this.props;
+    console.log(id, expenses);
     this.setState((prevState) => ({
       editHandle: !prevState.editHandle,
     }));
@@ -57,8 +58,9 @@ class Wallet extends React.Component {
 
   handleClick = async () => {
     const { display } = this.state;
-    const { getExchangeRates } = this.props;
+    const { getExchangeRates, editExp } = this.props;
     await getExchangeRates(display);
+    editExp(display);
     this.handleState();
   };
 
@@ -92,6 +94,7 @@ class Wallet extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   getCurrencies: () => dispatch(fetchCurrencies()),
   getExchangeRates: (state) => dispatch(fetchExchangeRates(state)),
+  editExp: (expense) => dispatch(editExpense(expense)),
 
 });
 

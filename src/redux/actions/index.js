@@ -5,6 +5,7 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const CHANGE_WALLET = 'CHANGE_WALLET';
 export const REQUEST_CURRENCIES = 'REQUEST_CURRENCIES';
 export const DELETE_EXPENSE = 'DELETE_EXPENSE';
+export const EDIT_EXPENSE = 'EDIT_EXPENSE';
 
 export const userLog = (email) => ({
   type: LOGIN_USER,
@@ -38,5 +39,10 @@ export function fetchExchangeRates(state) {
 }
 export const removeExpense = (expense) => ({
   type: DELETE_EXPENSE,
+  expense,
+});
+
+export const editExpense = (expense) => ({
+  type: EDIT_EXPENSE,
   expense,
 });

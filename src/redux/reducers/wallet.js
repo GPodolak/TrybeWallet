@@ -1,5 +1,6 @@
 // Esse reducer será responsável por tratar o todas as informações relacionadas as despesas
-import { CHANGE_WALLET, REQUEST_CURRENCIES, DELETE_EXPENSE } from '../actions';
+import { CHANGE_WALLET, REQUEST_CURRENCIES, DELETE_EXPENSE, EDIT_EXPENSE }
+  from '../actions';
 
 const INITIAL_STATE = {
   currencies: [],
@@ -7,21 +8,8 @@ const INITIAL_STATE = {
 };
 
 const walletReducer = (state = INITIAL_STATE, action) => {
-  console.log(action);
   switch (action.type) {
   case REQUEST_CURRENCIES:
-  /*   handleClick = async () => {
-      const { display } = this.state;
-      const { getExchangeRates } = this.props;
-      await getExchangeRates(display);
-      this.handleState();
-    };
-
-    handleState = () => {
-      this.setState(() => ({
-        display: INITIAL_STATE,
-      }));
-    }; */
     return {
       ...state,
       currencies: Object.keys(action.currencies),
@@ -43,6 +31,17 @@ const walletReducer = (state = INITIAL_STATE, action) => {
       ...state,
       expenses: state.expenses.filter((expense) => expense.id !== action.expense),
     };
+  case EDIT_EXPENSE:
+    return {
+      ...state,
+      expenses: state.expenses.map((expense) => {
+        if (action.expense.id === expense.id) {
+          return { ...action.expense };
+        }
+        return expense;
+      }),
+    };
+
   default:
     return state;
   }
